@@ -29,3 +29,19 @@ export type CommitItem = {
   challenge: string;
   learning: string;
 };
+
+export type JourneyCheckpoint = {
+  year: string;
+  title: string;
+  detail: string;
+  photo: string;
+  tags: string[];
+};
+
+export type CollegeYear = {
+  year: string;
+  title: string;
+  summary: string;
+  highlights: string[];
+  photo: string;
+};

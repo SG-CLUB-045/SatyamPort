@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" rx="48" fill="#111018"/>
+  <rect x="80" y="80" width="1040" height="640" rx="36" fill="url(#paint0_linear)" stroke="rgba(255,255,255,0.12)"/>
+  <path d="M140 560C260 420 340 560 460 430C560 320 660 560 780 420C870 315 950 360 1060 250" stroke="rgba(139,92,246,0.65)" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="340" cy="470" r="34" fill="#FBBF24"/>
+  <circle cx="650" cy="430" r="34" fill="#10B981"/>
+  <circle cx="930" cy="300" r="34" fill="#06B6D4"/>
+  <text x="120" y="160" fill="white" font-family="Arial, sans-serif" font-size="42" font-weight="700">Journey Checkpoint</text>
+  <text x="120" y="220" fill="rgba(255,255,255,0.72)" font-family="Arial, sans-serif" font-size="26">2024 - Hackathons and shipping</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="80" y1="80" x2="1120" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1B4B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

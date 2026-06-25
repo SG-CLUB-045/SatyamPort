@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import Lenis from "lenis";
 import { FiMenu, FiX, FiVolume2, FiVolumeX } from "react-icons/fi";
@@ -10,6 +10,8 @@ import {
   achievements,
   commits,
   contactEntries,
+  collegeJourney,
+  journeyCheckpoints,
   navItems,
   projects,
   releases,
@@ -18,11 +20,6 @@ import {
   systemModules
 } from "@/constants/portfolio";
 
-type Cursor = {
-  x: number;
-  y: number;
-};
-
 export function SatyamOS() {
   const [bootComplete, setBootComplete] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -30,7 +27,8 @@ export function SatyamOS() {
   const [selectedCommit, setSelectedCommit] = useState(commits[0]);
   const [expandedSkill, setExpandedSkill] = useState(skillCategories[0].name);
   const [soundEnabled, setSoundEnabled] = useState(false);
-  const [cursor, setCursor] = useState<Cursor>({ x: 35, y: 25 });
+  const [showAmbient, setShowAmbient] = useState(false);
+  const mainRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -50,6 +48,46 @@ export function SatyamOS() {
     return () => {
       window.cancelAnimationFrame(rafId);
       lenis.destroy();
+    };
+  }, []);
+
+  useEffect(() => {
+    const shouldShowAmbient = window.matchMedia("(min-width: 1024px)").matches && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    setShowAmbient(shouldShowAmbient);
+  }, []);
+
+  useEffect(() => {
+    const mainElement = mainRef.current;
+
+    if (!mainElement) {
+      return;
+    }
+
+    const setCursorVars = (clientX: number, clientY: number) => {
+      const rect = mainElement.getBoundingClientRect();
+      const x = ((clientX - rect.left) / rect.width) * 100;
+      const y = ((clientY - rect.top) / rect.height) * 100;
+      mainElement.style.setProperty("--cursor-x", `${x}%`);
+      mainElement.style.setProperty("--cursor-y", `${y}%`);
+    };
+
+    const handlePointerMove = (event: PointerEvent) => {
+      setCursorVars(event.clientX, event.clientY);
+    };
+
+    const handlePointerLeave = () => {
+      mainElement.style.setProperty("--cursor-x", "35%");
+      mainElement.style.setProperty("--cursor-y", "25%");
+    };
+
+    mainElement.style.setProperty("--cursor-x", "35%");
+    mainElement.style.setProperty("--cursor-y", "25%");
+    mainElement.addEventListener("pointermove", handlePointerMove);
+    mainElement.addEventListener("pointerleave", handlePointerLeave);
+
+    return () => {
+      mainElement.removeEventListener("pointermove", handlePointerMove);
+      mainElement.removeEventListener("pointerleave", handlePointerLeave);
     };
   }, []);
 
@@ -99,19 +137,17 @@ export function SatyamOS() {
 
   return (
     <main
-      onPointerMove={(event) => {
-        const rect = event.currentTarget.getBoundingClientRect();
-        setCursor({
-          x: ((event.clientX - rect.left) / rect.width) * 100,
-          y: ((event.clientY - rect.top) / rect.height) * 100
-        });
-      }}
+      ref={mainRef}
       className="relative min-h-screen overflow-x-hidden bg-[var(--background)] text-white"
+      style={{
+        ["--cursor-x" as string]: "35%",
+        ["--cursor-y" as string]: "25%"
+      }}
     >
       <div
         className="pointer-events-none absolute inset-0 opacity-80 transition-opacity duration-500"
         style={{
-          background: `radial-gradient(circle at ${cursor.x}% ${cursor.y}%, rgba(59, 130, 246, 0.16), transparent 26%), radial-gradient(circle at ${100 - cursor.x}% ${100 - cursor.y}%, rgba(6, 182, 212, 0.1), transparent 24%)`
+          background: "radial-gradient(circle at var(--cursor-x) var(--cursor-y), rgba(59, 130, 246, 0.16), transparent 26%), radial-gradient(circle at calc(100% - var(--cursor-x)) calc(100% - var(--cursor-y)), rgba(6, 182, 212, 0.1), transparent 24%)"
         }}
       />
       <div className="noise-layer pointer-events-none absolute inset-0 opacity-35" />
@@ -213,7 +249,11 @@ export function SatyamOS() {
                 className="glass relative overflow-hidden rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8"
               >
                 <div className="absolute inset-0 opacity-70">
-                  <AmbientScene />
+                  {showAmbient ? (
+                    <AmbientScene />
+                  ) : (
+                    <div className="h-full w-full bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(6,182,212,0.12),transparent_34%)]" />
+                  )}
                 </div>
                 <div className="relative z-10 max-w-3xl">
                   <div className="mb-8 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.35em] text-white/40">
@@ -463,7 +503,7 @@ export function SatyamOS() {
                           initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: index * 0.08 }}
-                          className={`w-[78%] rounded-[24px] border border-white/10 bg-black/25 p-4 shadow-[0_0_30px_rgba(59,130,246,0.08)] ${index % 2 === 0 ? "ml-0" : "ml-auto"}`}
+                          className={`w-full rounded-[24px] border border-white/10 bg-black/25 p-4 shadow-[0_0_30px_rgba(59,130,246,0.08)] md:w-[78%] ${index % 2 === 0 ? "ml-0" : "ml-auto"}`}
                         >
                           <div className="flex items-center gap-3">
                             <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sky-500/15 text-sky-200">{index + 1}</span>
@@ -497,6 +537,42 @@ export function SatyamOS() {
                       <div className="text-sm text-amber-200">🏆</div>
                       <p className="mt-4 text-lg text-white">{item}</p>
                     </motion.div>
+                  ))}
+                </div>
+              </div>
+            </section>
+
+            <section id="journey-checkpoints" className="mx-auto mt-6 max-w-7xl">
+              <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Career checkpoints</p>
+                <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
+                  <h2 className="text-2xl font-semibold">Photo journey</h2>
+                  <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/35">placeholder images</span>
+                </div>
+                <div className="mt-6 grid gap-4 lg:grid-cols-2 xl:grid-cols-3">
+                  {journeyCheckpoints.map((checkpoint, index) => (
+                    <motion.article
+                      key={checkpoint.title}
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.3 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] shadow-glow"
+                    >
+                      <img src={checkpoint.photo} alt={checkpoint.title} className="h-56 w-full object-cover" loading="lazy" />
+                      <div className="p-5">
+                        <div className="font-mono text-xs uppercase tracking-[0.3em] text-white/35">{checkpoint.year}</div>
+                        <h3 className="mt-2 text-xl font-semibold text-white">{checkpoint.title}</h3>
+                        <p className="mt-3 text-sm leading-7 text-white/62">{checkpoint.detail}</p>
+                        <div className="mt-4 flex flex-wrap gap-2">
+                          {checkpoint.tags.map((tag) => (
+                            <span key={tag} className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-xs text-white/70">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.article>
                   ))}
                 </div>
               </div>
@@ -539,6 +615,14 @@ export function SatyamOS() {
                     <div className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Selected Commit</div>
                     <h3 className="mt-3 text-2xl font-semibold text-white">{selectedCommit.message}</h3>
                     <p className="mt-2 font-mono text-sm text-cyan-200">{selectedCommit.year}</p>
+                    <div className="mt-5 overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04]">
+                      <img
+                        src={journeyCheckpoints.find((item) => item.year === selectedCommit.year)?.photo ?? "/placeholders/journey-2026.svg"}
+                        alt={selectedCommit.message}
+                        className="h-56 w-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
                     <div className="mt-5 space-y-4 text-sm leading-7 text-white/68">
                       <p>{selectedCommit.detail}</p>
                       <div>
@@ -551,6 +635,43 @@ export function SatyamOS() {
                       </div>
                     </div>
                   </div>
+                </div>
+              </div>
+            </section>
+
+            <section id="college-life" className="mx-auto mt-6 max-w-7xl">
+              <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">
+                <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">College life</p>
+                <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
+                  <h2 className="text-2xl font-semibold">Four-year journey</h2>
+                  <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/35">semester story</span>
+                </div>
+                <div className="mt-6 grid gap-4 xl:grid-cols-4">
+                  {collegeJourney.map((year, index) => (
+                    <motion.article
+                      key={year.year}
+                      initial={{ opacity: 0, y: 18 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true, amount: 0.25 }}
+                      transition={{ delay: index * 0.05 }}
+                      className="overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] shadow-glow"
+                    >
+                      <img src={year.photo} alt={year.title} className="h-44 w-full object-cover" loading="lazy" />
+                      <div className="p-5">
+                        <div className="font-mono text-xs uppercase tracking-[0.3em] text-white/35">{year.year}</div>
+                        <h3 className="mt-2 text-lg font-semibold text-white">{year.title}</h3>
+                        <p className="mt-3 text-sm leading-7 text-white/62">{year.summary}</p>
+                        <ul className="mt-4 space-y-2 text-sm text-white/70">
+                          {year.highlights.map((item) => (
+                            <li key={item} className="flex items-center gap-2">
+                              <span className="h-1.5 w-1.5 rounded-full bg-accent-cyan" />
+                              {item}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </motion.article>
+                  ))}
                 </div>
               </div>
             </section>

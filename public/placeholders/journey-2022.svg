@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800" fill="none">
+  <rect width="1200" height="800" rx="48" fill="#0B1020"/>
+  <rect x="80" y="80" width="1040" height="640" rx="36" fill="url(#paint0_linear)" stroke="rgba(255,255,255,0.12)"/>
+  <circle cx="240" cy="240" r="170" fill="rgba(59,130,246,0.25)"/>
+  <circle cx="930" cy="560" r="210" fill="rgba(6,182,212,0.18)"/>
+  <text x="120" y="160" fill="white" font-family="Arial, sans-serif" font-size="42" font-weight="700">Journey Checkpoint</text>
+  <text x="120" y="230" fill="rgba(255,255,255,0.78)" font-family="Arial, sans-serif" font-size="28">2022 - First lines of code</text>
+  <text x="120" y="295" fill="rgba(255,255,255,0.58)" font-family="Arial, sans-serif" font-size="22">Placeholder photo for the early learning era</text>
+  <rect x="120" y="510" width="320" height="140" rx="28" fill="rgba(255,255,255,0.08)"/>
+  <text x="150" y="570" fill="white" font-family="Arial, sans-serif" font-size="26" font-weight="600">Foundations</text>
+  <text x="150" y="612" fill="rgba(255,255,255,0.68)" font-family="Arial, sans-serif" font-size="20">C++ · Curiosity · Consistency</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="80" y1="80" x2="1120" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+  </defs>
+</svg>

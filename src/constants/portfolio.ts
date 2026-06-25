@@ -1,4 +1,4 @@
-import type { CommitItem, NavItem, ProjectCard, SkillCategory } from "@/types/portfolio";
+import type { CollegeYear, CommitItem, JourneyCheckpoint, NavItem, ProjectCard, SkillCategory } from "@/types/portfolio";
 
 export const navItems: NavItem[] = [
   { label: "Profile", icon: "🧠", href: "#profile" },
@@ -68,6 +68,75 @@ export const achievements = [
   "Patent Filed #1",
   "Patent Filed #2",
   "Technical Events Organizer"
+];
+
+export const journeyCheckpoints: JourneyCheckpoint[] = [
+  {
+    year: "2022",
+    title: "First lines of code",
+    detail: "The beginning was about learning logic, staying patient, and becoming comfortable with failing forward.",
+    photo: "/placeholders/journey-2022.svg",
+    tags: ["Curiosity", "C++", "Foundations"]
+  },
+  {
+    year: "2023",
+    title: "Mobile apps and UI craft",
+    detail: "Flutter became the first place where code felt like a product, not just an exercise.",
+    photo: "/placeholders/journey-2023.svg",
+    tags: ["Flutter", "Product thinking", "Motion"]
+  },
+  {
+    year: "2024",
+    title: "Hackathon momentum",
+    detail: "Fast iterations, teamwork, and demos turned skill growth into visible outcomes.",
+    photo: "/placeholders/journey-2024.svg",
+    tags: ["Hackathons", "Execution", "Pitching"]
+  },
+  {
+    year: "2025",
+    title: "AI systems and trust",
+    detail: "TrueVision and related AI work made the stack feel larger than a model and more like an end-to-end service.",
+    photo: "/placeholders/journey-2025.svg",
+    tags: ["AI", "Computer Vision", "Reliability"]
+  },
+  {
+    year: "2026",
+    title: "Production-ready story",
+    detail: "The portfolio itself becomes the final product that ties the story together for recruiters.",
+    photo: "/placeholders/journey-2026.svg",
+    tags: ["Systems", "Product", "Hiring"]
+  }
+];
+
+export const collegeJourney: CollegeYear[] = [
+  {
+    year: "Year 1",
+    title: "Learning the basics",
+    summary: "Built the habit of learning daily, explored programming fundamentals, and understood how to break down problems.",
+    highlights: ["Programming fundamentals", "C++ practice", "First projects"],
+    photo: "/placeholders/college-year-1.svg"
+  },
+  {
+    year: "Year 2",
+    title: "Finding my stack",
+    summary: "Shifted toward mobile development, explored collaboration, and started turning assignments into real mini-products.",
+    highlights: ["Flutter UI work", "Team collaboration", "Mini apps"],
+    photo: "/placeholders/college-year-2.svg"
+  },
+  {
+    year: "Year 3",
+    title: "Shipping and competing",
+    summary: "Joined hackathons, expanded into AI/ML, and started working on solutions that needed a clear demo story.",
+    highlights: ["Hackathons", "AI projects", "Demos"],
+    photo: "/placeholders/college-year-3.svg"
+  },
+  {
+    year: "Year 4",
+    title: "Ready for product teams",
+    summary: "Focused on architecture, reliability, and packaging the work into a recruiter-friendly portfolio narrative.",
+    highlights: ["System design", "Production polish", "Portfolio storytelling"],
+    photo: "/placeholders/college-year-4.svg"
+  }
 ];
 
 export const commits: CommitItem[] = [

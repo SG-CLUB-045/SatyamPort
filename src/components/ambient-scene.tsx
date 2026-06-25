@@ -41,7 +41,7 @@ export function AmbientScene() {
     const ambient = new THREE.AmbientLight(0xffffff, 1.4);
     scene.add(ambient);
 
-    const particleCount = 120;
+    const particleCount = 72;
     const positions = new Float32Array(particleCount * 3);
     for (let index = 0; index < particleCount; index += 1) {
       const offset = index * 3;
@@ -55,7 +55,7 @@ export function AmbientScene() {
 
     const pointsMaterial = new THREE.PointsMaterial({
       color: 0x93c5fd,
-      size: 0.045,
+      size: 0.055,
       transparent: true,
       opacity: 0.75,
       sizeAttenuation: true
@@ -73,6 +73,11 @@ export function AmbientScene() {
 
     let animationFrame = 0;
     const animate = () => {
+      if (document.hidden) {
+        animationFrame = window.requestAnimationFrame(animate);
+        return;
+      }
+
       animationFrame = window.requestAnimationFrame(animate);
       orb.rotation.x += 0.003;
       orb.rotation.y += 0.006;
@@ -82,8 +87,19 @@ export function AmbientScene() {
 
     animate();
 
+    const handleVisibility = () => {
+      if (document.hidden) {
+        return;
+      }
+
+      renderer.render(scene, camera);
+    };
+
+    document.addEventListener("visibilitychange", handleVisibility);
+
     return () => {
       window.cancelAnimationFrame(animationFrame);
+      document.removeEventListener("visibilitychange", handleVisibility);
       resizeObserver.disconnect();
       pointsGeometry.dispose();
       pointsMaterial.dispose();
