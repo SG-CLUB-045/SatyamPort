@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+  --background: #09090b;
+  --surface: #111113;
+  --surface-2: rgba(255, 255, 255, 0.05);
+  --border: rgba(255, 255, 255, 0.08);
+  --text: #ffffff;
+  --muted: #a1a1aa;
+  --accent-blue: #3b82f6;
+  --accent-cyan: #06b6d4;
+  --accent-emerald: #10b981;
+  --accent-purple: #8b5cf6;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--background);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.14), transparent 28%),
+    radial-gradient(circle at 80% 10%, rgba(139, 92, 246, 0.12), transparent 24%),
+    radial-gradient(circle at 70% 80%, rgba(6, 182, 212, 0.1), transparent 26%),
+    linear-gradient(180deg, #09090b 0%, #0d0d10 42%, #09090b 100%);
+  color: var(--text);
+  font-family: var(--font-space-grotesk), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.28);
+  color: #fff;
+}
+
+.glass {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  backdrop-filter: blur(18px);
+}
+
+.noise-layer {
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.08) 1px, transparent 0);
+  background-size: 20px 20px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.8), transparent 90%);
+}
+
+.font-mono {
+  font-family: var(--font-ibm-plex-mono), ui-monospace, SFMono-Regular, monospace;
+}
+
+.shadow-glow {
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 60px rgba(0, 0, 0, 0.45);
+}
