@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Patent filed achievement placeholder 1">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="45%" stop-color="#4b5563"/>
+      <stop offset="100%" stop-color="#f59e0b"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="120" y="90" width="960" height="620" rx="38" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.18"/>
+  <path d="M600 190l62 122 135 20-98 95 23 134-122-64-122 64 23-134-98-95 135-20z" fill="#fde68a" fill-opacity="0.32"/>
+  <text x="600" y="470" text-anchor="middle" fill="#ffffff" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">Patent Filed</text>
+  <text x="600" y="535" text-anchor="middle" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="28">Problem Space 01</text>
+</svg>

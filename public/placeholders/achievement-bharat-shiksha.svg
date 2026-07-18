@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Bharat Shiksha Expo achievement placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#451a03"/>
+      <stop offset="55%" stop-color="#c2410c"/>
+      <stop offset="100%" stop-color="#fde68a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="110" y="100" width="980" height="600" rx="44" fill="#fff7ed" fill-opacity="0.12" stroke="#ffffff" stroke-opacity="0.18"/>
+  <path d="M600 170l70 140 155 22-112 109 26 154-139-73-139 73 26-154-112-109 155-22z" fill="#fde68a" fill-opacity="0.4" stroke="#fff7ed" stroke-opacity="0.7" stroke-width="6"/>
+  <text x="600" y="485" text-anchor="middle" fill="#fff7ed" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">Bharat Shiksha Expo</text>
+  <text x="600" y="545" text-anchor="middle" fill="#ffedd5" font-family="Arial, Helvetica, sans-serif" font-size="30">Hackathon Winner</text>
+  <text x="600" y="625" text-anchor="middle" fill="#fff7ed" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="5">CERTIFICATE OF IMPACT</text>
+</svg>

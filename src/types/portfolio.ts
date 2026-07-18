@@ -17,6 +17,28 @@ export type ProjectCard = {
   architecture: ProjectArchitectureNode[];
 };
 
+export type ImpactStat = {
+  label: string;
+  value: string;
+  detail: string;
+};
+
+export type ProjectSpotlight = {
+  name: string;
+  year: string;
+  title: string;
+  result: string;
+  proofImage: string;
+};
+
+export type AchievementCard = {
+  id: string;
+  title: string;
+  year: string;
+  context: string;
+  proofImage: string;
+};
+
 export type SkillCategory = {
   name: string;
   items: string[];

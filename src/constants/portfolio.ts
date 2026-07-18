@@ -1,4 +1,4 @@
-import type { CollegeYear, CommitItem, JourneyCheckpoint, NavItem, ProjectCard, SkillCategory } from "@/types/portfolio";
+import type { AchievementCard, CollegeYear, CommitItem, ImpactStat, JourneyCheckpoint, NavItem, ProjectCard, ProjectSpotlight, SkillCategory } from "@/types/portfolio";
 
 export const navItems: NavItem[] = [
   { label: "Profile", icon: "🧠", href: "#profile" },
@@ -13,9 +13,16 @@ export const navItems: NavItem[] = [
 
 export const systemModules = [
   { title: "Curiosity Engine", description: "Always exploring how systems work." },
-  { title: "Problem Solving Module", description: "Break complex problems into scalable solutions." },
-  { title: "Builder Mode", description: "I learn by building." },
-  { title: "Continuous Upgrade Service", description: "Every project is a new version release." }
+  { title: "Problem Solving Module", description: "Break ambiguous work into scoped, shippable slices." },
+  { title: "Builder Mode", description: "I learn by building products, not just prototypes." },
+  { title: "Continuous Upgrade Service", description: "Every project becomes a cleaner version of the previous one." }
+];
+
+export const leadershipStats: ImpactStat[] = [
+  { label: "Core domains", value: "3", detail: "AI, mobile, and systems with end-to-end ownership." },
+  { label: "Winning hackathons", value: "2x", detail: "Validated under time pressure with live demos." },
+  { label: "Patents filed", value: "2", detail: "Original ideas pushed beyond the prototype stage." },
+  { label: "Operating style", value: "SDE3", detail: "Product thinking, clarity, reliability, and delivery." }
 ];
 
 export const runningProcesses = [
@@ -59,15 +66,88 @@ export const projects: ProjectCard[] = [
       { name: "Model Service", detail: "PyTorch-backed detector and scoring service" },
       { name: "Evidence Store", detail: "Results persisted for inspection and review" }
     ]
+  },
+  {
+    name: "Nexus Command Desk",
+    status: "Concept",
+    stack: ["Next.js", "TypeScript", "PostgreSQL", "Framer Motion"],
+    features: ["Executive dashboard", "Role-based access", "Event timeline", "Decision support"],
+    architecture: [
+      { name: "Command UI", detail: "High-density interface for product and leadership teams" },
+      { name: "Insight Layer", detail: "Aggregates metrics, trends, and operational signals" },
+      { name: "Workflow Engine", detail: "Routes approvals and actions to the right owners" },
+      { name: "Audit Trail", detail: "Tracks every action for accountability and trust" }
+    ]
   }
 ];
 
-export const achievements = [
-  "2× Bharat Shiksha Expo Hackathon Winner",
-  "UP International Trade Show Winner",
-  "Patent Filed #1",
-  "Patent Filed #2",
-  "Technical Events Organizer"
+export const projectSpotlights: ProjectSpotlight[] = [
+  {
+    name: "Rakshak Service",
+    year: "2025",
+    title: "Emergency response flow",
+    result: "Low-friction SOS activation, navigation, and AI-assisted escalation in one app.",
+    proofImage: "/placeholders/project-rakshak.svg"
+  },
+  {
+    name: "TrueVision Service",
+    year: "2025",
+    title: "Deepfake detection pipeline",
+    result: "Browser capture, model inference, and evidence review packaged as one service.",
+    proofImage: "/placeholders/project-truevision.svg"
+  },
+  {
+    name: "Nexus Command Desk",
+    year: "2026",
+    title: "Leadership dashboard concept",
+    result: "A product-style control surface that shows how I design for clarity and scale.",
+    proofImage: "/placeholders/project-nexus.svg"
+  }
+];
+
+export const achievementCards: AchievementCard[] = [
+  {
+    id: "bharat-shiksha-expo-1",
+    title: "Bharat Shiksha Expo Hackathon Winner",
+    year: "2024",
+    context: "Fast execution, demo clarity, and a solution that could be explained to non-technical judges.",
+    proofImage: "/placeholders/achievement-bharat-shiksha.svg"
+  },
+  {
+    id: "bharat-shiksha-expo-2",
+    title: "Bharat Shiksha Expo Hackathon Winner",
+    year: "2024",
+    context: "Second win from the same event track, reinforcing consistency under pressure.",
+    proofImage: "/placeholders/achievement-bharat-shiksha-2.svg"
+  },
+  {
+    id: "up-international-trade-show",
+    title: "UP International Trade Show Winner",
+    year: "2024",
+    context: "A market-facing win that proves the product story lands outside the dev room.",
+    proofImage: "/placeholders/achievement-trade-show.svg"
+  },
+  {
+    id: "patent-filed-1",
+    title: "Patent Filed - Problem Space 01",
+    year: "2025",
+    context: "An original idea documented with enough rigor to defend in a formal process.",
+    proofImage: "/placeholders/achievement-patent-1.svg"
+  },
+  {
+    id: "patent-filed-2",
+    title: "Patent Filed - Problem Space 02",
+    year: "2025",
+    context: "A second filing showing repeatable invention, not one-off luck.",
+    proofImage: "/placeholders/achievement-patent-2.svg"
+  },
+  {
+    id: "technical-events-organizer",
+    title: "Technical Events Organizer",
+    year: "2025",
+    context: "Owned execution, logistics, and communication for teams across the event lifecycle.",
+    proofImage: "/placeholders/achievement-organizer.svg"
+  }
 ];
 
 export const journeyCheckpoints: JourneyCheckpoint[] = [

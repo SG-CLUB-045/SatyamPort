@@ -35,6 +35,11 @@ body {
   font-family: var(--font-space-grotesk), system-ui, sans-serif;
 }
 
+img {
+  display: block;
+  max-width: 100%;
+}
+
 ::selection {
   background: rgba(59, 130, 246, 0.28);
   color: #fff;
@@ -58,4 +63,19 @@ body {
 
 .shadow-glow {
   box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -10px, 0);
+  }
+}
+
+.float-slow {
+  animation: float-slow 8s ease-in-out infinite;
 }

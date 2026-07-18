@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="Bharat Shiksha Expo second achievement placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1b4b"/>
+      <stop offset="50%" stop-color="#4338ca"/>
+      <stop offset="100%" stop-color="#67e8f9"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="100" y="110" width="1000" height="580" rx="48" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.18"/>
+  <circle cx="250" cy="230" r="100" fill="#c7d2fe" fill-opacity="0.16"/>
+  <circle cx="950" cy="570" r="140" fill="#67e8f9" fill-opacity="0.14"/>
+  <path d="M480 240l120 80 120-80v200l-120 80-120-80z" fill="#e0e7ff" fill-opacity="0.22" stroke="#e0e7ff" stroke-opacity="0.65" stroke-width="6"/>
+  <text x="600" y="500" text-anchor="middle" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">Bharat Shiksha Expo</text>
+  <text x="600" y="560" text-anchor="middle" fill="#e0f2fe" font-family="Arial, Helvetica, sans-serif" font-size="30">Hackathon Winner - Second Round</text>
+</svg>

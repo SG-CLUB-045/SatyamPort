@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="TrueVision project preview placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="55%" stop-color="#7c3aed"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="60%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#c4b5fd" stop-opacity="0.8"/>
+      <stop offset="50%" stop-color="#67e8f9" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <circle cx="820" cy="210" r="280" fill="url(#glow)"/>
+  <rect x="100" y="110" width="1000" height="580" rx="48" fill="#020617" fill-opacity="0.42" stroke="#ffffff" stroke-opacity="0.15"/>
+  <rect x="170" y="180" width="330" height="410" rx="34" fill="#0b1020" fill-opacity="0.72"/>
+  <rect x="540" y="180" width="490" height="95" rx="26" fill="#ffffff" fill-opacity="0.08"/>
+  <rect x="540" y="305" width="490" height="95" rx="26" fill="#ffffff" fill-opacity="0.08"/>
+  <rect x="540" y="430" width="490" height="160" rx="26" fill="#ffffff" fill-opacity="0.08"/>
+  <path d="M220 250h160l-20 190-60 55-60-55z" fill="#38bdf8" fill-opacity="0.16" stroke="#67e8f9" stroke-opacity="0.7" stroke-width="4"/>
+  <circle cx="300" cy="352" r="64" fill="#67e8f9" fill-opacity="0.14" stroke="#67e8f9" stroke-opacity="0.85" stroke-width="8"/>
+  <text x="198" y="250" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700">TrueVision Service</text>
+  <text x="198" y="295" fill="#c4b5fd" font-family="Arial, Helvetica, sans-serif" font-size="22">Deepfake detection pipeline</text>
+  <text x="565" y="238" fill="#e2e8f0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Spatial + temporal inference</text>
+  <text x="565" y="362" fill="#e2e8f0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Browser capture + scoring</text>
+  <text x="565" y="495" fill="#e2e8f0" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Evidence store and review</text>
+  <text x="120" y="735" fill="#ffffff" fill-opacity="0.9" font-family="Arial, Helvetica, sans-serif" font-size="56" font-weight="700" letter-spacing="6">TRUST LAYER</text>
+</svg>

@@ -7,13 +7,15 @@ import { FiMenu, FiX, FiVolume2, FiVolumeX } from "react-icons/fi";
 import { AmbientScene } from "@/components/ambient-scene";
 import { BootScreen } from "@/components/boot-screen";
 import {
-  achievements,
+  achievementCards,
   commits,
   contactEntries,
   collegeJourney,
+  leadershipStats,
   journeyCheckpoints,
   navItems,
   projects,
+  projectSpotlights,
   releases,
   runningProcesses,
   skillCategories,
@@ -28,6 +30,7 @@ export function SatyamOS() {
   const [expandedSkill, setExpandedSkill] = useState(skillCategories[0].name);
   const [soundEnabled, setSoundEnabled] = useState(false);
   const [showAmbient, setShowAmbient] = useState(false);
+  const [activeSection, setActiveSection] = useState(navItems[0].href.slice(1));
   const mainRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
@@ -91,9 +94,44 @@ export function SatyamOS() {
     };
   }, []);
 
+  useEffect(() => {
+    const sectionIds = navItems.map((item) => item.href.replace("#", ""));
+    const sections = sectionIds.map((id) => document.getElementById(id)).filter((section): section is HTMLElement => Boolean(section));
+
+    if (sections.length === 0) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const visibleEntry = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((left, right) => right.intersectionRatio - left.intersectionRatio)[0];
+
+        if (visibleEntry?.target.id) {
+          setActiveSection(visibleEntry.target.id);
+        }
+      },
+      {
+        root: null,
+        threshold: [0.2, 0.35, 0.5, 0.65],
+        rootMargin: "-15% 0px -55% 0px"
+      }
+    );
+
+    sections.forEach((section) => observer.observe(section));
+
+    return () => observer.disconnect();
+  }, [bootComplete]);
+
   const heroStatus = useMemo(
     () => ["Version: v5.0.0", "State: Stable Release", "Experience:", "  - AI Applications", "  - Mobile Development", "  - Distributed Systems", "  - Computer Vision"],
     []
+  );
+
+  const selectedProjectSpotlight = useMemo(
+    () => projectSpotlights.find((item) => item.name === selectedProject.name) ?? projectSpotlights[0],
+    [selectedProject]
   );
 
   const playTick = () => {
@@ -126,7 +164,12 @@ export function SatyamOS() {
   };
 
   const navigateTo = (target: string) => {
-    document.querySelector(target)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    const section = document.querySelector(target);
+
+    section?.scrollIntoView({ behavior: "smooth", block: "start" });
+    if (section instanceof HTMLElement) {
+      setActiveSection(section.id);
+    }
     setMobileMenuOpen(false);
     playTick();
   };
@@ -152,8 +195,8 @@ export function SatyamOS() {
       />
       <div className="noise-layer pointer-events-none absolute inset-0 opacity-35" />
 
-      <section className="relative mx-auto flex min-h-screen w-full max-w-[1600px] flex-col lg:flex-row">
-        <aside className="glass relative z-20 hidden w-72 shrink-0 border-r border-white/10 px-5 py-6 lg:flex lg:flex-col">
+      <section className="relative mx-auto min-h-screen w-full max-w-[1600px] lg:pl-72">
+        <aside className="glass fixed inset-y-0 left-0 z-40 hidden w-72 border-r border-white/10 px-5 py-6 lg:flex lg:flex-col lg:overflow-y-auto">
           <div className="mb-8 space-y-2 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-glow">
             <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">SatyamOS</p>
             <h1 className="text-2xl font-semibold tracking-tight">Developer Kernel</h1>
@@ -164,7 +207,7 @@ export function SatyamOS() {
               <button
                 key={item.label}
                 onClick={() => navigateTo(item.href)}
-                className="flex w-full items-center gap-3 rounded-2xl border border-transparent px-4 py-3 text-left text-sm text-white/72 transition hover:border-white/10 hover:bg-white/[0.05] hover:text-white"
+                className={`flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left text-sm transition ${activeSection === item.href.replace("#", "") ? "border-sky-400/30 bg-sky-500/10 text-white shadow-[0_0_30px_rgba(59,130,246,0.12)]" : "border-transparent text-white/72 hover:border-white/10 hover:bg-white/[0.05] hover:text-white"}`}
               >
                 <span className="text-lg">{item.icon}</span>
                 <span>{item.label}</span>
@@ -179,7 +222,7 @@ export function SatyamOS() {
           </div>
         </aside>
 
-        <div className="relative flex min-h-screen flex-1 flex-col">
+        <div className="relative flex min-h-screen flex-1 flex-col lg:pl-0">
           <header className="sticky top-0 z-30 border-b border-white/10 bg-[#09090b]/75 px-4 py-4 backdrop-blur-xl md:px-6 lg:px-10">
             <div className="mx-auto flex max-w-7xl items-center justify-between gap-4">
               <button
@@ -220,7 +263,7 @@ export function SatyamOS() {
                 initial={{ opacity: 0, y: -16 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -16 }}
-                className="glass absolute left-4 right-4 top-[4.5rem] z-40 rounded-[28px] border border-white/10 p-4 shadow-glow lg:hidden"
+                className="glass fixed left-4 right-4 top-[4.5rem] z-50 rounded-[28px] border border-white/10 p-4 shadow-glow lg:hidden"
               >
                 <div className="mb-4 text-xs uppercase tracking-[0.35em] text-white/35">SatyamOS</div>
                 <div className="grid gap-2 sm:grid-cols-2">
@@ -228,7 +271,7 @@ export function SatyamOS() {
                     <button
                       key={item.label}
                       onClick={() => navigateTo(item.href)}
-                      className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3 text-left text-sm text-white/80"
+                      className={`flex items-center gap-3 rounded-2xl border px-4 py-3 text-left text-sm ${activeSection === item.href.replace("#", "") ? "border-sky-400/30 bg-sky-500/10 text-white" : "border-white/10 bg-white/[0.04] text-white/80"}`}
                     >
                       <span>{item.icon}</span>
                       <span>{item.label}</span>
@@ -240,7 +283,7 @@ export function SatyamOS() {
           </AnimatePresence>
 
           <div className="relative flex-1 px-4 py-6 md:px-6 lg:px-10 lg:py-10">
-            <div className="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.25fr_0.75fr]">
+            <div className="mx-auto grid max-w-7xl gap-6 2xl:grid-cols-[1.08fr_0.92fr]">
               <motion.section
                 id="profile"
                 initial={{ opacity: 0, y: 20 }}
@@ -255,89 +298,110 @@ export function SatyamOS() {
                     <div className="h-full w-full bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(6,182,212,0.12),transparent_34%)]" />
                   )}
                 </div>
-                <div className="relative z-10 max-w-3xl">
-                  <div className="mb-8 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.35em] text-white/40">
-                    <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">Boot sequence complete</span>
-                    <span className="rounded-full border border-cyan-400/20 bg-cyan-500/10 px-3 py-1 text-cyan-100">Recruiter mode</span>
+
+                <div className="relative z-10 grid gap-8">
+                  <div className="grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-start">
+                    <div className="max-w-3xl">
+                      <div className="mb-8 flex flex-wrap items-center gap-2 text-xs uppercase tracking-[0.35em] text-white/40">
+                        <span className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1">Boot sequence complete</span>
+                        <span className="rounded-full border border-cyan-400/20 bg-cyan-500/10 px-3 py-1 text-cyan-100">Recruiter mode</span>
+                      </div>
+
+                      <div className="space-y-4 font-mono text-sm text-white/78 md:text-base">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <span className="text-cyan-300">satyam@portfolio:~$</span>
+                          <span>whoami</span>
+                        </div>
+                        <div className="grid gap-1 rounded-[28px] border border-white/10 bg-black/25 p-5 text-white/92 backdrop-blur-md md:p-6">
+                          {[
+                            "Satyam Jaiswal",
+                            "Software Development Engineer",
+                            "Flutter Developer",
+                            "AI Engineer",
+                            "Product Builder",
+                            "System Design Enthusiast"
+                          ].map((line) => (
+                            <span key={line}>{line}</span>
+                          ))}
+                        </div>
+                        <div className="flex flex-wrap items-center gap-2 pt-3">
+                          <span className="text-cyan-300">satyam@portfolio:~$</span>
+                          <span>impact</span>
+                        </div>
+                        <div className="grid gap-1 rounded-[28px] border border-white/10 bg-black/25 p-5 text-white/80 backdrop-blur-md md:p-6">
+                          {heroStatus.map((line) => (
+                            <span key={line}>{line}</span>
+                          ))}
+                        </div>
+                      </div>
+
+                      <p className="mt-6 max-w-2xl text-sm leading-7 text-white/66 md:text-base">
+                        I design and ship product experiences that balance speed, reliability, and clear decision-making. The story here is built like a real engineering portfolio: outcome-driven work, proof images, and enough system context for an SDE3 interview.
+                      </p>
+
+                      <div className="mt-8 flex flex-wrap gap-3">
+                        <button
+                          onClick={() => navigateTo("#projects")}
+                          className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:scale-[1.01]"
+                        >
+                          View Projects
+                        </button>
+                        <a
+                          href="/api/resume"
+                          className="rounded-full border border-white/15 bg-white/[0.05] px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.08]"
+                        >
+                          Download Resume
+                        </a>
+                      </div>
+                    </div>
+
+                    <div className="self-start justify-self-end w-full max-w-[320px] sm:max-w-[340px] lg:max-w-[320px] xl:max-w-[340px]">
+                      <div className="glass relative overflow-hidden rounded-[30px] border border-white/10 p-3 shadow-glow" style={{ perspective: "1200px" }}>
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.16),transparent_42%),radial-gradient(circle_at_bottom_right,rgba(6,182,212,0.12),transparent_36%)]" />
+                        <motion.div
+                          animate={{ rotateX: [0, 7, -7, 0], rotateY: [0, 14, -14, 0], y: [0, -6, 0] }}
+                          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+                          className="relative mx-auto flex min-h-[290px] w-full items-center justify-center rounded-[24px] border border-white/10 bg-black/20 p-3 lg:min-h-[320px]"
+                          style={{ transformStyle: "preserve-3d" }}
+                        >
+                          <div className="absolute inset-3 rounded-[20px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
+                          <div className="relative h-full w-full overflow-hidden rounded-[20px] border border-white/10 bg-[#0b1020]">
+                            <img src="/placeholders/profile-portrait.svg" alt="Satyam portrait placeholder" className="h-full w-full object-cover" loading="lazy" />
+                            <div className="absolute left-3 top-3 rounded-full border border-white/15 bg-black/50 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-100">
+                              Profile Frame
+                            </div>
+                            <div className="absolute inset-x-3 bottom-3 rounded-[18px] border border-white/10 bg-black/55 p-3 backdrop-blur-md">
+                              <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/35">Current focus</div>
+                              <p className="mt-2 text-xs leading-5 text-white/80 sm:text-sm sm:leading-6">Building polished products with strong foundations, measurable outcomes, and clear ownership.</p>
+                            </div>
+                          </div>
+                        </motion.div>
+                      </div>
+                    </div>
                   </div>
 
-                  <div className="space-y-4 font-mono text-sm text-white/78 md:text-base">
-                    <div className="flex flex-wrap items-center gap-2">
-                      <span className="text-cyan-300">satyam@portfolio:~$</span>
-                      <span>whoami</span>
-                    </div>
-                    <div className="grid gap-1 rounded-[28px] border border-white/10 bg-black/25 p-5 text-white/92 backdrop-blur-md md:p-6">
-                      {[
-                        "Satyam Jaiswal",
-                        "Software Development Engineer",
-                        "Flutter Developer",
-                        "AI Engineer",
-                        "Problem Solver",
-                        "System Design Enthusiast"
-                      ].map((line) => (
-                        <span key={line}>{line}</span>
+                  <div className="grid gap-6 lg:grid-cols-2">
+                    <div className="grid gap-3 sm:grid-cols-2 lg:col-span-2">
+                      {leadershipStats.map((stat) => (
+                        <div key={stat.label} className="rounded-[28px] border border-white/10 bg-white/[0.04] p-4 shadow-glow">
+                          <div className="font-mono text-xs uppercase tracking-[0.3em] text-white/35">{stat.label}</div>
+                          <div className="mt-3 text-3xl font-semibold text-white">{stat.value}</div>
+                          <p className="mt-2 text-sm leading-6 text-white/64">{stat.detail}</p>
+                        </div>
                       ))}
                     </div>
-                    <div className="flex flex-wrap items-center gap-2 pt-3">
-                      <span className="text-cyan-300">satyam@portfolio:~$</span>
-                      <span>status</span>
-                    </div>
-                    <div className="grid gap-1 rounded-[28px] border border-white/10 bg-black/25 p-5 text-white/80 backdrop-blur-md md:p-6">
-                      {heroStatus.map((line) => (
-                        <span key={line}>{line}</span>
-                      ))}
-                    </div>
-                  </div>
 
-                  <div className="mt-8 flex flex-wrap gap-3">
-                    <button
-                      onClick={() => navigateTo("#projects")}
-                      className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:scale-[1.01]"
-                    >
-                      View Projects
-                    </button>
-                    <a
-                      href="/api/resume"
-                      className="rounded-full border border-white/15 bg-white/[0.05] px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/[0.08]"
-                    >
-                      Download Resume
-                    </a>
+                    <div className="glass rounded-[32px] border border-white/10 p-5 shadow-glow lg:col-span-2">
+                      <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Operating Principles</p>
+                      <div className="mt-4 grid gap-3 text-sm text-white/68 md:grid-cols-3">
+                        <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">Own the outcome, not just the implementation.</div>
+                        <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">Prefer simple systems that can survive real usage.</div>
+                        <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">Communicate clearly so design, product, and engineering stay aligned.</div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </motion.section>
-
-              <div className="grid gap-6">
-                <motion.section
-                  className="glass rounded-[32px] border border-white/10 p-6 shadow-glow"
-                  initial={{ opacity: 0, y: 16 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                >
-                  <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Developer Kernel</p>
-                  <h2 className="mt-3 text-2xl font-semibold">About the engineer</h2>
-                  <p className="mt-3 text-sm leading-7 text-white/65">
-                    A product-minded builder who turns curiosity into systems, mobile apps, and AI-driven tools. The story here is organized like a machine: modules, processes, versions, and releases.
-                  </p>
-                </motion.section>
-
-                <div className="glass rounded-[32px] border border-white/10 p-6 shadow-glow">
-                  <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">System Snapshot</p>
-                  <div className="mt-4 grid gap-3 text-sm text-white/72">
-                    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-                      <span>Version</span>
-                      <span className="font-mono text-cyan-200">v5.0.0</span>
-                    </div>
-                    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-                      <span>State</span>
-                      <span className="font-mono text-emerald-200">Stable Release</span>
-                    </div>
-                    <div className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-3">
-                      <span>Focus</span>
-                      <span className="font-mono text-sky-200">AI + Mobile + Systems</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
             </div>
 
             <div className="mx-auto mt-6 grid max-w-7xl gap-6 lg:grid-cols-2">
@@ -446,27 +510,38 @@ export function SatyamOS() {
                 <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">
                   <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Deployed Services</p>
                   <h2 className="mt-2 text-2xl font-semibold">Production projects</h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-7 text-white/62">
+                    Every project is framed like a real service: a user need, a working system, and visual evidence you can inspect quickly.
+                  </p>
                   <div className="mt-6 grid gap-4">
                     {projects.map((project) => {
                       const active = selectedProject.name === project.name;
+                      const spotlight = projectSpotlights.find((item) => item.name === project.name) ?? projectSpotlights[0];
 
                       return (
                         <div key={project.name} className={`rounded-[30px] border p-5 transition ${active ? "border-sky-400/40 bg-sky-500/10" : "border-white/10 bg-white/[0.04]"}`}>
-                          <div className="flex flex-wrap items-start justify-between gap-4">
+                          <div className="grid gap-4 lg:grid-cols-[150px_1fr]">
+                            <img src={spotlight.proofImage} alt={spotlight.title} className="h-36 w-full rounded-[24px] border border-white/10 object-cover" loading="lazy" />
                             <div>
-                              <div className="font-mono text-xs uppercase tracking-[0.3em] text-white/35">{project.status}</div>
-                              <h3 className="mt-2 text-xl font-semibold text-white">{project.name}</h3>
-                            </div>
-                            <div className="flex flex-wrap gap-2">
-                              <button onClick={() => setSelectedProject(project)} className="rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.25em] text-white/70">
-                                Open Architecture
-                              </button>
-                              <button onClick={() => playTick()} className="rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.25em] text-white/70">
-                                View Demo
-                              </button>
-                              <button onClick={() => playTick()} className="rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.25em] text-white/70">
-                                Source Code
-                              </button>
+                              <div className="flex flex-wrap items-start justify-between gap-4">
+                                <div>
+                                  <div className="font-mono text-xs uppercase tracking-[0.3em] text-white/35">{project.status}</div>
+                                  <h3 className="mt-2 text-xl font-semibold text-white">{project.name}</h3>
+                                  <p className="mt-2 text-sm leading-7 text-white/62">{spotlight.title}</p>
+                                </div>
+                                <div className="flex flex-wrap gap-2">
+                                  <button onClick={() => setSelectedProject(project)} className="rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.25em] text-white/70">
+                                    Open Architecture
+                                  </button>
+                                  <button onClick={() => playTick()} className="rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.25em] text-white/70">
+                                    View Demo
+                                  </button>
+                                  <button onClick={() => playTick()} className="rounded-full border border-white/15 bg-white/[0.05] px-4 py-2 text-xs uppercase tracking-[0.25em] text-white/70">
+                                    Source Code
+                                  </button>
+                                </div>
+                              </div>
+                              <p className="mt-4 text-sm leading-7 text-white/62">{spotlight.result}</p>
                             </div>
                           </div>
                           <div className="mt-4 text-sm text-white/65">
@@ -494,9 +569,26 @@ export function SatyamOS() {
                   <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Architecture Viewer</p>
                   <h2 className="mt-2 text-2xl font-semibold">{selectedProject.name}</h2>
                   <p className="mt-2 text-sm text-white/60">System design diagram with animated service nodes.</p>
-                  <div className="relative mt-6 min-h-[420px] overflow-hidden rounded-[30px] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5">
+                  <div className="relative mt-6 overflow-hidden rounded-[30px] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5">
+                    <div className="overflow-hidden rounded-[24px] border border-white/10 bg-black/20">
+                      <img src={selectedProjectSpotlight.proofImage} alt={selectedProjectSpotlight.title} className="h-56 w-full object-cover" loading="lazy" />
+                    </div>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                      <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/68">
+                        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/35">Focus</div>
+                        <p className="mt-2">{selectedProjectSpotlight.title}</p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/68">
+                        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/35">Release</div>
+                        <p className="mt-2">{selectedProject.status}</p>
+                      </div>
+                      <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/68">
+                        <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/35">Stack</div>
+                        <p className="mt-2">{selectedProject.stack.slice(0, 3).join(" + ")}</p>
+                      </div>
+                    </div>
                     <div className="absolute inset-y-6 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-cyan-400/0 via-cyan-300/60 to-cyan-400/0" />
-                    <div className="grid h-full gap-4">
+                    <div className="relative mt-6 grid gap-4">
                       {selectedProject.architecture.map((node, index) => (
                         <motion.div
                           key={node.name}
@@ -516,6 +608,18 @@ export function SatyamOS() {
                       ))}
                     </div>
                   </div>
+
+                  <div className="mt-6 grid gap-3 sm:grid-cols-3">
+                    {projectSpotlights.map((spotlight) => (
+                      <div key={spotlight.name} className="overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04]">
+                        <img src={spotlight.proofImage} alt={spotlight.title} className="h-36 w-full object-cover" loading="lazy" />
+                        <div className="p-4">
+                          <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/35">{spotlight.year}</div>
+                          <div className="mt-2 text-sm font-medium text-white">{spotlight.title}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
                 </div>
               </div>
             </section>
@@ -523,19 +627,26 @@ export function SatyamOS() {
             <section id="achievements" className="mx-auto mt-6 max-w-7xl">
               <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">System Milestones</p>
-                <h2 className="mt-2 text-2xl font-semibold">Achievements</h2>
+                <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
+                  <h2 className="text-2xl font-semibold">Achievements</h2>
+                  <span className="font-mono text-xs uppercase tracking-[0.25em] text-white/35">Image-backed proof</span>
+                </div>
                 <div className="mt-6 grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-                  {achievements.map((item, index) => (
+                  {achievementCards.map((item, index) => (
                     <motion.div
-                      key={item}
+                      key={item.id}
                       initial={{ opacity: 0, y: 18 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.35 }}
                       transition={{ delay: index * 0.08 }}
-                      className="rounded-[30px] border border-white/10 bg-white/[0.04] p-5"
+                      className="overflow-hidden rounded-[30px] border border-white/10 bg-white/[0.04] shadow-glow"
                     >
-                      <div className="text-sm text-amber-200">🏆</div>
-                      <p className="mt-4 text-lg text-white">{item}</p>
+                      <img src={item.proofImage} alt={item.title} className="h-48 w-full object-cover" loading="lazy" />
+                      <div className="p-5">
+                        <div className="font-mono text-xs uppercase tracking-[0.3em] text-white/35">{item.year}</div>
+                        <p className="mt-3 text-lg text-white">{item.title}</p>
+                        <p className="mt-3 text-sm leading-7 text-white/62">{item.context}</p>
+                      </div>
                     </motion.div>
                   ))}
                 </div>

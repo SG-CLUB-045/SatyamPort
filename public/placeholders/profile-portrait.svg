@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1500" role="img" aria-label="Profile portrait placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#1d4ed8"/>
+      <stop offset="100%" stop-color="#0891b2"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#7dd3fc" stop-opacity="0.85"/>
+      <stop offset="45%" stop-color="#38bdf8" stop-opacity="0.22"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="1500" fill="url(#bg)"/>
+  <circle cx="600" cy="430" r="310" fill="url(#glow)"/>
+  <circle cx="600" cy="520" r="190" fill="#cbd5e1" fill-opacity="0.12"/>
+  <path d="M450 830c18-120 83-190 150-190s132 70 150 190v120H450z" fill="#0b1020" fill-opacity="0.78"/>
+  <path d="M490 520c0-63 49-114 110-114s110 51 110 114-49 114-110 114-110-51-110-114Z" fill="#e2e8f0" fill-opacity="0.9"/>
+  <path d="M420 1110c30-155 126-235 180-235h0c54 0 150 80 180 235" fill="#e2e8f0" fill-opacity="0.1"/>
+  <rect x="150" y="120" width="900" height="1160" rx="72" fill="none" stroke="#ffffff" stroke-opacity="0.15" stroke-width="8"/>
+  <text x="80" y="1410" fill="#e2e8f0" fill-opacity="0.88" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="700" letter-spacing="8">SATYAM</text>
+  <text x="80" y="1460" fill="#cbd5e1" fill-opacity="0.68" font-family="Arial, Helvetica, sans-serif" font-size="30" letter-spacing="5">PROFILE FRAME</text>
+</svg>

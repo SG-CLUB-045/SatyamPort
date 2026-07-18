@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" role="img" aria-label="UP International Trade Show achievement placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="50%" stop-color="#0f766e"/>
+      <stop offset="100%" stop-color="#84cc16"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="800" fill="url(#bg)"/>
+  <rect x="110" y="120" width="980" height="560" rx="42" fill="#ffffff" fill-opacity="0.10" stroke="#ffffff" stroke-opacity="0.16"/>
+  <path d="M280 590h640" stroke="#d9f99d" stroke-opacity="0.8" stroke-width="18" stroke-linecap="round"/>
+  <path d="M330 500h140l-20-120h100l-28 200" fill="#f8fafc" fill-opacity="0.12" stroke="#d9f99d" stroke-opacity="0.6" stroke-width="6"/>
+  <rect x="680" y="250" width="210" height="210" rx="32" fill="#f8fafc" fill-opacity="0.14"/>
+  <text x="600" y="210" text-anchor="middle" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">UP International Trade Show</text>
+  <text x="600" y="280" text-anchor="middle" fill="#d9f99d" font-family="Arial, Helvetica, sans-serif" font-size="30">Winner</text>
+  <text x="600" y="640" text-anchor="middle" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="24" letter-spacing="5">PUBLIC DEMO READY</text>
+</svg>
