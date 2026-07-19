@@ -12,25 +12,30 @@ export const navItems: NavItem[] = [
 ];
 
 export const systemModules = [
-  { title: "Curiosity Engine", description: "Always exploring how systems work." },
-  { title: "Problem Solving Module", description: "Break ambiguous work into scoped, shippable slices." },
-  { title: "Builder Mode", description: "I learn by building products, not just prototypes." },
-  { title: "Continuous Upgrade Service", description: "Every project becomes a cleaner version of the previous one." }
+  { title: "Curiosity Engine", description: "Every project starts with \"How does this actually work?\"" },
+  { title: "Debugging Engine", description: "Break ambiguous work into scoped, shippable slices." },
+  { title: "Builder.dll", description: "I learn by building products, not just prototypes." },
+  { title: "AutoUpdate Service", description: "Every project teaches something the next one uses." }
 ];
 
 export const leadershipStats: ImpactStat[] = [
+  { label: "Projects", value: "10+", detail: "AI, mobile, and systems with end-to-end ownership." },
+  { label: "Problems Solved", value: "500+", detail: "Diverse set of algorithmic and system design challenges." },
   { label: "Core domains", value: "3", detail: "AI, mobile, and systems with end-to-end ownership." },
-  { label: "Winning hackathons", value: "2x", detail: "Validated under time pressure with live demos." },
-  { label: "Patents filed", value: "2", detail: "Original ideas pushed beyond the prototype stage." },
-  { label: "Operating style", value: "SDE3", detail: "Product thinking, clarity, reliability, and delivery." }
+  { label: "Winning hackathons", value: "5x", detail: "Validated under time pressure with live demos." },
+  { label: "Internships", value: "1", detail: "Validated under time pressure with live demos." },
+  { label: "Certifications", value: "6", detail: "Validated under time pressure with live demos." },
+  { label: "Patents filed", value: "3", detail: "Original ideas pushed beyond the prototype stage." },
+  { label: "Operating style", value: "Critical Thinking", detail: "Product thinking, clarity, reliability, and delivery." }
 ];
 
 export const runningProcesses = [
-  { pid: 101, name: "Student", status: "Running" },
-  { pid: 102, name: "Flutter Developer", status: "Active" },
-  { pid: 103, name: "AI Engineer", status: "Active" },
-  { pid: 104, name: "Hackathon Competitor", status: "Active" },
-  { pid: 105, name: "System Design Learner", status: "Running" }
+  { pid: 101, name: "Software Engineer", status: "Running" },
+  { pid: 102, name: "Open Source", status: "Initializing" },
+  { pid: 103, name: "Building Products", status: "Active" },
+  { pid: 104, name: "Continuous Learning", status: "Background" },
+  { pid: 106, name: "Backend Development", status: "Running" },
+  { pid: 105, name: "AI Systems", status: "Active" },
 ];
 
 export const skillCategories: SkillCategory[] = [
@@ -87,21 +92,24 @@ export const projectSpotlights: ProjectSpotlight[] = [
     year: "2025",
     title: "Emergency response flow",
     result: "Low-friction SOS activation, navigation, and AI-assisted escalation in one app.",
-    proofImage: "/placeholders/project-rakshak.svg"
+    proofImage: "/placeholders/rakshak_logo.png",
+    archImage: "/placeholders/rakshak_Arch.png"
   },
   {
     name: "TrueVision Service",
     year: "2025",
     title: "Deepfake detection pipeline",
     result: "Browser capture, model inference, and evidence review packaged as one service.",
-    proofImage: "/placeholders/project-truevision.svg"
+    proofImage: "/placeholders/project-truevision.svg",
+    archImage: "/placeholders/project-truevision.svg",
   },
   {
     name: "Nexus Command Desk",
     year: "2026",
     title: "Leadership dashboard concept",
     result: "A product-style control surface that shows how I design for clarity and scale.",
-    proofImage: "/placeholders/project-nexus.svg"
+    proofImage: "/placeholders/project-nexus.svg",
+    archImage: "/placeholders/project-nexus.svg"
   }
 ];
 

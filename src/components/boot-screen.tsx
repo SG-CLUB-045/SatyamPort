@@ -6,12 +6,12 @@ import gsap from "gsap";
 
 const bootLines = [
   "Booting SatyamOS v5.0...",
-  "Loading curiosity.dll ............ OK",
-  "Loading cplusplus.dll ............ OK",
-  "Loading flutter-engine.dll ....... OK",
-  "Loading ai-engine.dll ............ OK",
-  "Loading system-design.dll ........ OK",
-  "Loading problem-solving.dll ...... OK",
+  "Loading Curiosity.dll ............ OK",
+  "Loading C++.dll ............ OK",
+  "Loading Problem Solving.dll ...... OK",
+  "Loading AppDev Engine.dll ....... OK",
+  "Loading AI/ML Tensors.dll ............ OK",
+  "Loading System Architecture.dll ........ OK",
   "Initializing Developer Kernel...",
   "Launching Portfolio Environment...",
   "Welcome Recruiter."

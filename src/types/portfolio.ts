@@ -29,6 +29,7 @@ export type ProjectSpotlight = {
   title: string;
   result: string;
   proofImage: string;
+  archImage: string;
 };
 
 export type AchievementCard = {

@@ -124,10 +124,11 @@ export function SatyamOS() {
     return () => observer.disconnect();
   }, [bootComplete]);
 
-  const heroStatus = useMemo(
-    () => ["Version: v5.0.0", "State: Stable Release", "Experience:", "  - AI Applications", "  - Mobile Development", "  - Distributed Systems", "  - Computer Vision"],
-    []
-  );
+  // const heroStatus = useMemo(
+  //   () => ["Version: v5.0.0", "State: Stable Release", "Experience:", "  - AI Applications", "  - Mobile Development", "  - Distributed Systems", "  - Computer Vision"],
+  //   []
+  // );
+
 
   const selectedProjectSpotlight = useMemo(
     () => projectSpotlights.find((item) => item.name === selectedProject.name) ?? projectSpotlights[0],
@@ -200,7 +201,8 @@ export function SatyamOS() {
           <div className="mb-8 space-y-2 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 shadow-glow">
             <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">SatyamOS</p>
             <h1 className="text-2xl font-semibold tracking-tight">Developer Kernel</h1>
-            <p className="text-sm text-white/55">Booting the journey of an engineer who builds intelligent systems.</p>
+            {/* <p className="text-sm text-white/55">Booting the journey of an engineer who builds intelligent systems.</p> */}
+            <p className="text-sm text-white/55">Welcome to the Worktree of an engineer who builds intelligent and scalable systems.</p>
           </div>
           <nav className="space-y-2">
             {navItems.map((item) => (
@@ -214,7 +216,7 @@ export function SatyamOS() {
               </button>
             ))}
           </nav>
-          <div className="mt-auto rounded-[28px] border border-white/10 bg-white/[0.04] p-4 text-xs uppercase tracking-[0.28em] text-white/35">
+          <div className="mt-3 rounded-[28px] border border-white/10 bg-white/[0.04] p-4 text-xs uppercase tracking-[0.28em] text-white/35">
             <p className="mb-3">System Ready</p>
             <div className="h-2 rounded-full bg-white/10">
               <div className="h-2 w-[88%] rounded-full bg-gradient-to-r from-sky-500 via-cyan-400 to-emerald-400" />
@@ -315,28 +317,31 @@ export function SatyamOS() {
                         <div className="grid gap-1 rounded-[28px] border border-white/10 bg-black/25 p-5 text-white/92 backdrop-blur-md md:p-6">
                           {[
                             "Satyam Jaiswal",
-                            "Software Development Engineer",
-                            "Flutter Developer",
-                            "AI Engineer",
-                            "Product Builder",
-                            "System Design Enthusiast"
+                            "Software Engineer",
+                            "Turning Ideas into Products",
+                            "AI × Backend × Distributed System",
+                            "Building for Scale",
+                            // "System Design Enthusiast"
                           ].map((line) => (
                             <span key={line}>{line}</span>
                           ))}
                         </div>
-                        <div className="flex flex-wrap items-center gap-2 pt-3">
+                        {/* <div className="flex flex-wrap items-center gap-2 pt-3">
                           <span className="text-cyan-300">satyam@portfolio:~$</span>
                           <span>impact</span>
-                        </div>
-                        <div className="grid gap-1 rounded-[28px] border border-white/10 bg-black/25 p-5 text-white/80 backdrop-blur-md md:p-6">
+                        </div> */}
+                        {/* <div className="grid gap-1 rounded-[28px] border border-white/10 bg-black/25 p-5 text-white/80 backdrop-blur-md md:p-6">
                           {heroStatus.map((line) => (
                             <span key={line}>{line}</span>
                           ))}
-                        </div>
+                        </div> */}
                       </div>
 
                       <p className="mt-6 max-w-2xl text-sm leading-7 text-white/66 md:text-base">
-                        I design and ship product experiences that balance speed, reliability, and clear decision-making. The story here is built like a real engineering portfolio: outcome-driven work, proof images, and enough system context for an SDE3 interview.
+                        I enjoy building software that solves real-world problems not just demos.
+                        Over the past few years I've built AI-powered systems, production Flutter applications, backend APIs, and computer vision solutions.
+                        Whether it's detecting deepfakes, improving women's safety, or translating natural language into SQL, I enjoy taking an idea from
+                        concept to deployment. Currently exploring scalable backend systems, distributed architectures, and AI products.
                       </p>
 
                       <div className="mt-8 flex flex-wrap gap-3">
@@ -366,13 +371,15 @@ export function SatyamOS() {
                         >
                           <div className="absolute inset-3 rounded-[20px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.02))]" />
                           <div className="relative h-full w-full overflow-hidden rounded-[20px] border border-white/10 bg-[#0b1020]">
-                            <img src="/placeholders/profile-portrait.svg" alt="Satyam portrait placeholder" className="h-full w-full object-cover" loading="lazy" />
+                            <img src="/placeholders/my_prof_pic.png" alt="Satyam portrait placeholder" className="h-full w-full object-cover" loading="lazy" />
                             <div className="absolute left-3 top-3 rounded-full border border-white/15 bg-black/50 px-3 py-1 font-mono text-[10px] uppercase tracking-[0.3em] text-cyan-100">
                               Profile Frame
                             </div>
                             <div className="absolute inset-x-3 bottom-3 rounded-[18px] border border-white/10 bg-black/55 p-3 backdrop-blur-md">
                               <div className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/35">Current focus</div>
-                              <p className="mt-2 text-xs leading-5 text-white/80 sm:text-sm sm:leading-6">Building polished products with strong foundations, measurable outcomes, and clear ownership.</p>
+                              <p className="mt-2 text-xs leading-5 text-white/80 sm:text-sm sm:leading-6">Building scalable software
+                                using AI, backend engineering,
+                                and thoughtful product design.</p>
                             </div>
                           </div>
                         </motion.div>
@@ -393,10 +400,11 @@ export function SatyamOS() {
 
                     <div className="glass rounded-[32px] border border-white/10 p-5 shadow-glow lg:col-span-2">
                       <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Operating Principles</p>
-                      <div className="mt-4 grid gap-3 text-sm text-white/68 md:grid-cols-3">
+                      <div className="mt-4 grid gap-3 text-sm text-white/68 md:grid-cols-4">
                         <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">Own the outcome, not just the implementation.</div>
                         <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">Prefer simple systems that can survive real usage.</div>
                         <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">Communicate clearly so design, product, and engineering stay aligned.</div>
+                        <div className="rounded-2xl border border-white/10 bg-black/15 px-4 py-3">Never stop learning.</div>
                       </div>
                     </div>
                   </div>
@@ -415,7 +423,7 @@ export function SatyamOS() {
                     PID Monitor
                   </div>
                 </div>
-                <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+                <div className="mt-6 grid gap-3 md:grid-cols-2 xl:grid-cols-2">
                   {runningProcesses.map((process, index) => (
                     <motion.div
                       key={process.pid}
@@ -427,7 +435,7 @@ export function SatyamOS() {
                     >
                       <div className="flex items-center justify-between text-xs uppercase tracking-[0.3em] text-white/35">
                         <span>PID {process.pid}</span>
-                        <span className={process.status === "Active" ? "text-emerald-300" : "text-cyan-300"}>{process.status}</span>
+                        <span className={process.status === "Active" || process.status === "Initializing"? "text-emerald-300" : "text-cyan-300"}>{process.status}</span>
                       </div>
                       <div className="mt-4 text-lg font-medium text-white">{process.name}</div>
                     </motion.div>
@@ -521,7 +529,7 @@ export function SatyamOS() {
                       return (
                         <div key={project.name} className={`rounded-[30px] border p-5 transition ${active ? "border-sky-400/40 bg-sky-500/10" : "border-white/10 bg-white/[0.04]"}`}>
                           <div className="grid gap-4 lg:grid-cols-[150px_1fr]">
-                            <img src={spotlight.proofImage} alt={spotlight.title} className="h-36 w-full rounded-[24px] border border-white/10 object-cover" loading="lazy" />
+                            <img src={spotlight.proofImage} alt={spotlight.title} className="h-36 w-full rounded-[24px] border border-white/10" loading="lazy" />
                             <div>
                               <div className="flex flex-wrap items-start justify-between gap-4">
                                 <div>
@@ -571,7 +579,7 @@ export function SatyamOS() {
                   <p className="mt-2 text-sm text-white/60">System design diagram with animated service nodes.</p>
                   <div className="relative mt-6 overflow-hidden rounded-[30px] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(59,130,246,0.18),transparent_36%),linear-gradient(180deg,rgba(255,255,255,0.05),rgba(255,255,255,0.02))] p-5">
                     <div className="overflow-hidden rounded-[24px] border border-white/10 bg-black/20">
-                      <img src={selectedProjectSpotlight.proofImage} alt={selectedProjectSpotlight.title} className="h-56 w-full object-cover" loading="lazy" />
+                      <img src={selectedProjectSpotlight.archImage} alt={selectedProjectSpotlight.title} className="h-56 w-full object-cover" loading="lazy" />
                     </div>
                     <div className="mt-4 grid gap-3 sm:grid-cols-3">
                       <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 text-sm text-white/68">
@@ -587,7 +595,7 @@ export function SatyamOS() {
                         <p className="mt-2">{selectedProject.stack.slice(0, 3).join(" + ")}</p>
                       </div>
                     </div>
-                    <div className="absolute inset-y-6 left-1/2 w-px -translate-x-1/2 bg-gradient-to-b from-cyan-400/0 via-cyan-300/60 to-cyan-400/0" />
+                    <div />
                     <div className="relative mt-6 grid gap-4">
                       {selectedProject.architecture.map((node, index) => (
                         <motion.div
