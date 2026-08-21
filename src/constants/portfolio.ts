@@ -248,8 +248,8 @@ export const releases = [
 ];
 
 export const contactEntries = [
-  { label: "LinkedIn", value: "Reachable", href: "https://linkedin.com" },
-  { label: "GitHub", value: "Reachable", href: "https://github.com" },
-  { label: "Email", value: "Reachable", href: "mailto:hello@satyamos.dev" },
+  { label: "LinkedIn", value: "Reachable", href: "https://www.linkedin.com/in/satyam-jaiswal-1ab701259/" },
+  { label: "GitHub", value: "Reachable", href: "https://github.com/SG-CLUB-045" },
+  { label: "Email", value: "Reachable", href: "mailto:jsatyam045@gmail.com" },
   { label: "Location", value: "India", href: "#contact" }
 ];

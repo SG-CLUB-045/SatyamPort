@@ -825,7 +825,7 @@ export function SatyamOS() {
                   <h2 className="mt-2 text-2xl font-semibold">build successful</h2>
                   <div className="mt-6 rounded-[30px] border border-white/10 bg-black/25 p-5 font-mono text-sm text-white/72">
                     <div>Artifact:</div>
-                    <div className="mt-2 text-white">resume_v5.0.pdf</div>
+                    <div className="mt-2 text-white">Satyam_Jaiswal_Resume.pdf</div>
                   </div>
                   <a
                     href="/api/resume"
