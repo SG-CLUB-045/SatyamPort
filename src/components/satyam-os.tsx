@@ -204,12 +204,12 @@ export function SatyamOS() {
             {/* <p className="text-sm text-white/55">Booting the journey of an engineer who builds intelligent systems.</p> */}
             <p className="text-sm text-white/55">Welcome to the Worktree of an engineer who builds intelligent and scalable systems.</p>
           </div>
-          <nav className="space-y-2">
+          <nav className="space-y-1">
             {navItems.map((item) => (
               <button
                 key={item.label}
                 onClick={() => navigateTo(item.href)}
-                className={`flex w-full items-center gap-3 rounded-2xl border px-4 py-3 text-left text-sm transition ${activeSection === item.href.replace("#", "") ? "border-sky-400/30 bg-sky-500/10 text-white shadow-[0_0_30px_rgba(59,130,246,0.12)]" : "border-transparent text-white/72 hover:border-white/10 hover:bg-white/[0.05] hover:text-white"}`}
+                className={`flex w-full items-center gap-3 rounded-2xl border px-4 py-2 text-left text-sm transition ${activeSection === item.href.replace("#", "") ? "border-sky-400/30 bg-sky-500/10 text-white shadow-[0_0_30px_rgba(59,130,246,0.12)]" : "border-transparent text-white/72 hover:border-white/10 hover:bg-white/[0.05] hover:text-white"}`}
               >
                 <span className="text-lg">{item.icon}</span>
                 <span>{item.label}</span>
@@ -661,7 +661,7 @@ export function SatyamOS() {
               </div>
             </section>
 
-            <section id="journey-checkpoints" className="mx-auto mt-6 max-w-7xl">
+            {/* <section id="journey-checkpoints" className="mx-auto mt-6 max-w-7xl">
               <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Career checkpoints</p>
                 <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
@@ -695,9 +695,9 @@ export function SatyamOS() {
                   ))}
                 </div>
               </div>
-            </section>
+            </section> */}
 
-            <section id="journey" className="mx-auto mt-6 max-w-7xl">
+            {/* <section id="journey" className="mx-auto mt-6 max-w-7xl">
               <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">Git History</p>
                 <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
@@ -756,9 +756,9 @@ export function SatyamOS() {
                   </div>
                 </div>
               </div>
-            </section>
+            </section> */}
 
-            <section id="college-life" className="mx-auto mt-6 max-w-7xl">
+            {/* <section id="college-life" className="mx-auto mt-6 max-w-7xl">
               <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">
                 <p className="font-mono text-xs uppercase tracking-[0.35em] text-white/35">College life</p>
                 <div className="mt-2 flex flex-wrap items-end justify-between gap-4">
@@ -793,7 +793,7 @@ export function SatyamOS() {
                   ))}
                 </div>
               </div>
-            </section>
+            </section> */}
 
             <section className="mx-auto mt-6 max-w-7xl">
               <div className="glass rounded-[36px] border border-white/10 p-6 shadow-glow md:p-8">

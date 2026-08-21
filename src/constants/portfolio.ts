@@ -3,10 +3,10 @@ import type { AchievementCard, CollegeYear, CommitItem, ImpactStat, JourneyCheck
 export const navItems: NavItem[] = [
   { label: "Profile", icon: "🧠", href: "#profile" },
   { label: "Processes", icon: "⚙", href: "#processes" },
+  { label: "Skills", icon: "🧩", href: "#skills" },
   { label: "Projects", icon: "📂", href: "#projects" },
   { label: "Achievements", icon: "🏆", href: "#achievements" },
-  { label: "Skills", icon: "🧩", href: "#skills" },
-  { label: "Git Journey", icon: "📜", href: "#journey" },
+  // { label: "Git Journey", icon: "📜", href: "#journey" },
   { label: "Resume", icon: "📄", href: "#resume" },
   { label: "Contact", icon: "📬", href: "#contact" }
 ];
@@ -49,7 +49,7 @@ export const skillCategories: SkillCategory[] = [
 
 export const projects: ProjectCard[] = [
   {
-    name: "Rakshak Service",
+    name: "Rakshak",
     status: "Production",
     stack: ["Flutter", "Firebase", "Gemini AI", "Google Maps"],
     features: ["Voice Detection", "Fall Detection", "SOS Alerts", "Fake Call Simulation", "Safety Navigation"],
@@ -61,7 +61,7 @@ export const projects: ProjectCard[] = [
     ]
   },
   {
-    name: "TrueVision Service",
+    name: "TrueVision",
     status: "Production",
     stack: ["PyTorch", "OpenCV", "Flask", "Firebase"],
     features: ["Deepfake Detection", "Video Analysis", "Chrome Extension", "Spatial + Temporal Modeling"],
@@ -73,22 +73,22 @@ export const projects: ProjectCard[] = [
     ]
   },
   {
-    name: "Nexus Command Desk",
-    status: "Concept",
-    stack: ["Next.js", "TypeScript", "PostgreSQL", "Framer Motion"],
-    features: ["Executive dashboard", "Role-based access", "Event timeline", "Decision support"],
+    name: "Query Wizard",
+    status: "Pre-production",
+    stack: ["Streamlit", "Gemini", "MYSQL", "Python"],
+    features: ["Executive dashboard", "Role-based access", "NLP to SQL", "Data visualization"],
     architecture: [
-      { name: "Command UI", detail: "High-density interface for product and leadership teams" },
-      { name: "Insight Layer", detail: "Aggregates metrics, trends, and operational signals" },
-      { name: "Workflow Engine", detail: "Routes approvals and actions to the right owners" },
-      { name: "Audit Trail", detail: "Tracks every action for accountability and trust" }
+      { name: "Command UI", detail: " Service that converts multilingual natural language queries into optimized SQL statements " },
+      { name: "Insight Layer", detail: " Designed a context-aware session management system to preserve conversational history" },
+      { name: "Workflow Engine", detail: "Optimized backend request flow and database interactions, reducing redundant processing" },
+      { name: "Audit Trail", detail: " Enable iterative query refinement." }
     ]
   }
 ];
 
 export const projectSpotlights: ProjectSpotlight[] = [
   {
-    name: "Rakshak Service",
+    name: "Rakshak",
     year: "2025",
     title: "Emergency response flow",
     result: "Low-friction SOS activation, navigation, and AI-assisted escalation in one app.",
@@ -96,7 +96,7 @@ export const projectSpotlights: ProjectSpotlight[] = [
     archImage: "/placeholders/rakshak_Arch.png"
   },
   {
-    name: "TrueVision Service",
+    name: "TrueVision",
     year: "2025",
     title: "Deepfake detection pipeline",
     result: "Browser capture, model inference, and evidence review packaged as one service.",
@@ -104,7 +104,7 @@ export const projectSpotlights: ProjectSpotlight[] = [
     archImage: "/placeholders/project-truevision.svg",
   },
   {
-    name: "Nexus Command Desk",
+    name: "Query Wizard",
     year: "2026",
     title: "Leadership dashboard concept",
     result: "A product-style control surface that shows how I design for clarity and scale.",
