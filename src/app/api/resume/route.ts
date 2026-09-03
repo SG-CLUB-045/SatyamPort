@@ -16,7 +16,7 @@ export async function GET() {
       headers: {
         "Content-Type": "application/pdf",
         "Content-Disposition":
-          'attachment; filename="Satyam_Jaiswal_Resume.pdf"',
+          'attachment; filename="Satyam_Jaiswal_resume.pdf"',
       },
     });
   } catch (error) {
