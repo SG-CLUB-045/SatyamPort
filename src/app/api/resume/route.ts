@@ -6,7 +6,7 @@ export async function GET() {
     process.cwd(),
     "public",
     "resume",
-    "Satyam_Jaiswal_Resume.pdf"
+    "Satyam_Jaiswal_resume.pdf"
   );
 
   try {
